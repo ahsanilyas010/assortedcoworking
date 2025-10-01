@@ -25,7 +25,7 @@ const highlights = [
 
 const Highlights = () => {
   return (
-    <section className="py-20 bg-secondary">
+    <section className="py-20 bg-muted/30">
       <div className="section-container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {highlights.map((item, index) => (

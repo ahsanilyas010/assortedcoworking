@@ -25,7 +25,7 @@ const benefits = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="py-20 bg-secondary">
+    <section className="py-20 bg-muted/30">
       <div className="section-container">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Us?</h2>
