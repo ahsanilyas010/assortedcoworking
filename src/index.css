@@ -17,16 +17,16 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 20%;
 
-    --primary: 335 100% 65%;
+    --primary: 209 59% 30%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 244 100% 69%;
+    --secondary: 100 36% 49%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 98%;
+    --muted: 0 0% 96%;
     --muted-foreground: 0 0% 40%;
 
-    --accent: 335 100% 65%;
+    --accent: 32 73% 56%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -34,40 +34,40 @@ All colors MUST be HSL.
 
     --border: 0 0% 88%;
     --input: 0 0% 88%;
-    --ring: 335 100% 65%;
+    --ring: 209 59% 30%;
 
     --radius: 1rem;
 
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 0 0% 20%;
-    --sidebar-primary: 335 100% 65%;
+    --sidebar-primary: 209 59% 30%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 98%;
+    --sidebar-accent: 0 0% 96%;
     --sidebar-accent-foreground: 0 0% 20%;
     --sidebar-border: 0 0% 88%;
-    --sidebar-ring: 335 100% 65%;
+    --sidebar-ring: 209 59% 30%;
   }
 
   .dark {
-    --background: 0 0% 20%;
+    --background: 0 0% 12%;
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 15%;
+    --card: 0 0% 16%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 15%;
+    --popover: 0 0% 16%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 335 100% 65%;
+    --primary: 209 59% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 244 100% 69%;
+    --secondary: 100 36% 55%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 25%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 335 100% 65%;
+    --accent: 32 73% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 63% 31%;
@@ -75,15 +75,15 @@ All colors MUST be HSL.
 
     --border: 0 0% 25%;
     --input: 0 0% 25%;
-    --ring: 335 100% 65%;
-    --sidebar-background: 0 0% 15%;
+    --ring: 209 59% 45%;
+    --sidebar-background: 0 0% 16%;
     --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 335 100% 65%;
+    --sidebar-primary: 209 59% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 20%;
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 0 0% 25%;
-    --sidebar-ring: 335 100% 65%;
+    --sidebar-ring: 209 59% 45%;
   }
 }
 
@@ -127,15 +127,15 @@ All colors MUST be HSL.
   }
 
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(335 100% 55%) 100%);
+    background: linear-gradient(135deg, hsl(209 59% 30%) 0%, hsl(209 59% 40%) 100%);
   }
 
   .gradient-accent {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+    background: linear-gradient(135deg, hsl(209 59% 30%) 0%, hsl(100 36% 49%) 100%);
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+    background: linear-gradient(135deg, hsl(209 59% 30%) 0%, hsl(32 73% 56%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
