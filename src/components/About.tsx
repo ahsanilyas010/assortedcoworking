@@ -9,7 +9,7 @@ const About = () => {
           <div className="bg-card rounded-2xl shadow-xl p-8 md:p-12 border border-border">
             <div className="prose prose-lg max-w-none">
               <p className="text-lg leading-relaxed text-muted-foreground mb-6">
-                Founded with a vision to help businesses streamline their operations and focus on what they do best, <span className="text-gradient font-semibold">CoWorking</span> has grown from a small team of dedicated professionals to a comprehensive BPO service provider.
+                Founded with a vision to help businesses streamline their operations and focus on what they do best, <span className="text-gradient font-semibold">Assorted Coworking</span> has grown from a small team of dedicated professionals to a comprehensive BPO service provider.
               </p>
               <p className="text-lg leading-relaxed text-muted-foreground mb-6">
                 Our journey began with a simple understanding: businesses need reliable partners who can handle their non-core processes efficiently, allowing them to concentrate on innovation, growth, and customer satisfaction.

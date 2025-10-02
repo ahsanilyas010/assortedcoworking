@@ -26,8 +26,8 @@ const Hero = () => {
         <div className="max-w-3xl animate-fade-in">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Your Productive{" "}
-            <span className="text-gradient">CoWorking Space</span>
-            <br />in Islamabad
+            <span className="text-gradient">Assorted Coworking</span>
+            <br />Space in Islamabad
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl">
             Work smarter with flexible, comfortable, and professional spaces designed for success.
