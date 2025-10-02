@@ -16,7 +16,7 @@ const pricingPlans = [
       "Power Backup",
       "Flexible Timings"
     ],
-    badge: null
+    badge: "BEST VALUE"
   },
   {
     name: "Monthly Plan",
