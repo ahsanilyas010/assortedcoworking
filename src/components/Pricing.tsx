@@ -11,9 +11,7 @@ const pricingPlans = [
       "High-Speed WiFi",
       "Free Tea & Coffee",
       "Comfortable, Air-Conditioned Space",
-      "Meeting Room Access (if needed)",
       "Quiet & Productive Environment",
-      "Power Backup",
       "Flexible Timings"
     ],
     badge: "BEST VALUE"
