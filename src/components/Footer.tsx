@@ -14,7 +14,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand Section */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">Assorted Business</h3>
+            <h3 className="text-2xl font-bold mb-4">CoWorking</h3>
             <p className="text-background/80 mb-4">
               Premium coworking solutions for modern professionals and growing teams.
             </p>
@@ -81,7 +81,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-background/20 pt-8">
           <div className="text-center text-background/80">
-            <p>&copy; {currentYear} Assorted Business. All rights reserved.</p>
+            <p>&copy; {currentYear} CoWorking. All rights reserved.</p>
           </div>
         </div>
       </div>
