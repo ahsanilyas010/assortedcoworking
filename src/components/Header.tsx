@@ -26,7 +26,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <img src={logo} alt="Assorted Coworking Logo" className="h-14 w-auto object-contain" />
+            <img src={logo} alt="Assorted Coworking Logo" className="h-[5.25rem] w-auto object-contain" />
             <h1 className="text-xl md:text-2xl font-bold text-gradient whitespace-nowrap">Assorted Coworking</h1>
           </div>
 
