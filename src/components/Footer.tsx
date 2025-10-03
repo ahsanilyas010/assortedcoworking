@@ -22,12 +22,8 @@ const Footer = () => {
               <a href="#" className="w-10 h-10 rounded-full bg-background/10 hover:bg-background/20 flex items-center justify-center transition-colors" aria-label="Facebook">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-background/10 hover:bg-background/20 flex items-center justify-center transition-colors" aria-label="Twitter">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-background/10 hover:bg-background/20 flex items-center justify-center transition-colors" aria-label="Instagram">
-                <Instagram className="w-5 h-5" />
-              </a>
+              
+              
               <a href="#" className="w-10 h-10 rounded-full bg-background/10 hover:bg-background/20 flex items-center justify-center transition-colors" aria-label="LinkedIn">
                 <Linkedin className="w-5 h-5" />
               </a>
@@ -71,7 +67,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Phone className="w-5 h-5 mr-2 flex-shrink-0" />
-                <span className="text-background/80">+92 342 222 1633</span>
+                <span className="text-background/80">+92 3218526405
+              </span>
               </li>
               
             </ul>
