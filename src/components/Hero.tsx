@@ -15,8 +15,8 @@ const Hero = () => {
       <div className="absolute inset-0">
         <img
           src={heroImage}
-          alt="Modern coworking space"
-          className="w-full h-full object-cover"
+          alt="Assorted Coworking space in D-12 Markaz Islamabad"
+          className="w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/60" />
       </div>
