@@ -1,73 +1,108 @@
-# Welcome to your Lovable project
+# assortedcoworking
 
-## Project info
+Create a modern, responsive landing page design for a coworking space website. Use the following structure and content:
 
-**URL**: https://lovable.dev/projects/853eee6d-96e0-4f12-abcf-270025fd7307
+Header (Navigation)
 
-## How can I edit this code?
+Logo on the left.
 
-There are several ways of editing your application.
+Menu on the right: Home | About Us | Pricing | Contact
 
-**Use Lovable**
+Highlighted CTA button: Book a Tour
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/853eee6d-96e0-4f12-abcf-270025fd7307) and start prompting.
+Hero Section
 
-Changes made via Lovable will be committed automatically to this repo.
+Background image: people working in a modern office.
 
-**Use your preferred IDE**
+Headline: “Your Productive Co-Working Space in [City]”
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Subheadline: “Work smarter with flexible, comfortable, and professional spaces.”
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+CTA Button: Book Now
 
-Follow these steps:
+Section 1 – Highlights (icons + text)
+
+Air-Conditioned Rooms
+
+Private Meeting Room
+
+High-Speed WiFi
+
+Silent Environment
+
+Section 2 – Pricing
+
+Monthly Plan – ₹20,000
+Includes:
+✔ AC Room
+✔ Private Meeting Room
+✔ High-Speed WiFi
+✔ Silent Environment
+✔ Tea & Coffee
+✔ 24/6 Open (Sunday Off)
+
+CTA Button: Get Started
+
+Section 3 – Why Choose Us
+
+Prime Location
+
+Professional Community
+
+Flexible Timings
+
+Clean & Productive Workspace
+
+Section 4 – About Us
+
+Short intro:
+“Assorted Business brings you not just business solutions, but also a premium coworking experience designed for professionals, startups, and teams.”
+
+Section 5 – Contact Us
+
+Contact Form: Name, Email, Phone, Message + Submit Button
+
+Side Info: Address, Phone, Email, Map
+
+Footer
+
+Quick Links: Home | About Us | Pricing | Contact
+
+Contact Info (address, phone, email)
+
+Social Media Icons
+
+Copyright © 2025
+
+Design Style
+
+Clean, modern, and professional.
+
+Balanced whitespace, subtle animations, and clear CTAs.
+
+Consistent color palette with professional tones (blue/gray with accent color).
+
+Responsive layout for desktop, tablet, and mobile.
+
+This project was built with [Lovable](https://lovable.dev).
+
+**Live app**: https://assortedcoworking.lovable.app
+
+## Build with Lovable
+
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/8ee012a1-2f88-4db6-9b7d-fca838b69470).
+
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+
+## Development
+
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+git clone <this-repository-url>
+cd <repository-name>
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/853eee6d-96e0-4f12-abcf-270025fd7307) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
