@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-coworking.jpg";
+import heroImage from "@/assets/open-coworking-space-islamabad.jpg";
 
 const WORDS = ["Productive", "Inspiring", "Connected", "Creative"];
 
@@ -51,7 +51,7 @@ const Hero = () => {
       <motion.div className="absolute inset-0" style={{ y }}>
         <img
           src={heroImage}
-          alt="Assorted Coworking space"
+          alt="Assorted Coworking Space Islamabad - Open hot desk area at D-12 Markaz Zarpar Arcade"
           className="w-full h-full object-cover object-center scale-110"
         />
         <div className="absolute inset-0 animated-gradient opacity-85" />
