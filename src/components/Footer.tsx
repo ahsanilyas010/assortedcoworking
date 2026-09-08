@@ -55,7 +55,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-white/55 text-sm leading-relaxed mb-6">
-              Premium coworking solutions for modern professionals and growing teams in the heart of Islamabad.
+              Islamabad's best coworking space at D-12 Markaz, Zarpar Arcade. Flexible hot desks, private offices, meeting rooms & 24/7 access for freelancers, startups & remote teams.
             </p>
             <div className="flex gap-3">
               {SOCIAL.map((s) => {

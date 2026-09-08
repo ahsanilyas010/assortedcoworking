@@ -7,7 +7,7 @@ const plans = [
     name: "Day Pass",
     price: "1,500",
     period: "/day",
-    description: "Drop in and get things done",
+    description: "Flexible hot desk — walk in, work, leave",
     badge: null,
     icon: Zap,
     color: "from-blue-600 to-indigo-600",
@@ -20,10 +20,10 @@ const plans = [
     ],
   },
   {
-    name: "Monthly Plan",
+    name: "Monthly Membership",
     price: "20,000",
     period: "/month",
-    description: "Your dedicated professional home",
+    description: "Private office with 24/7 access — your dedicated workspace",
     badge: "MOST POPULAR",
     icon: Building2,
     color: "from-accent to-orange-500",
@@ -179,11 +179,11 @@ const Pricing = () => {
             Simple Pricing
           </motion.div>
           <h2 className="text-4xl md:text-5xl font-black mb-4">
-            Transparent Plans,{" "}
-            <span className="text-gradient">Zero Surprises</span>
+            Affordable Coworking Space{" "}
+            <span className="text-gradient">Prices in Islamabad</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Choose the plan that works for your work style
+            Day pass from PKR 1,500 · Monthly membership from PKR 20,000 — flexible plans for freelancers, startups & remote teams
           </p>
         </motion.div>
 
@@ -200,7 +200,7 @@ const Pricing = () => {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.8 }}
         >
-          🎁 First day is on us — book a free trial tour today!
+          🎁 Free 1-day trial pass for new members — experience Islamabad's best coworking space before you commit!
         </motion.p>
       </div>
     </section>
