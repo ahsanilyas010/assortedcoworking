@@ -1,48 +1,237 @@
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
+const stats = [
+  { value: 80, suffix: "+", label: "Happy Members", color: "from-blue-500 to-indigo-500" },
+  { value: 24, suffix: "/7", label: "Access Hours", color: "from-accent to-orange-500" },
+  { value: 100, suffix: "%", label: "Satisfaction", color: "from-green-500 to-emerald-500" },
+  { value: 1, suffix: "+ yr", label: "of Excellence", color: "from-purple-500 to-pink-500" },
+];
+
+const Counter = ({ value, suffix, color }: { value: number; suffix: string; color: string }) => {
+  const [count, setCount] = useState(0);
+  const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: true });
+
+  useEffect(() => {
+    if (!inView) return;
+    const duration = 1800;
+    const start = Date.now();
+    const tick = () => {
+      const elapsed = Date.now() - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(ease * value));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [inView, value]);
+
+  return (
+    <div ref={ref} className="text-center">
+      <div className={`text-4xl md:text-5xl font-black bg-gradient-to-r ${color} bg-clip-text text-transparent`}>
+        {count}{suffix}
+      </div>
+    </div>
+  );
+};
+
 const About = () => {
-  return <section id="about" className="py-20">
-      <div className="section-container">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">About Us</h2>
-          </div>
+  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [textRef, textInView] = useInView({ threshold: 0.2, triggerOnce: true });
 
-          <div className="bg-card rounded-2xl shadow-xl p-8 md:p-12 border border-border">
-            <div className="prose prose-lg max-w-none">
-              <p className="text-lg leading-relaxed text-muted-foreground mb-6">
-                At <span className="text-gradient font-semibold">Assorted Coworking</span>, we believe work is more than just a desk and a chair — it's about community, creativity, and growth. Located in the heart of D-12 Markaz, Islamabad, our space is designed to bring entrepreneurs, freelancers, startups, and professionals together under one roof.
-              </p>
-              <p className="text-lg leading-relaxed text-muted-foreground mb-6">
-                We offer flexible workspaces, private offices, and meeting rooms equipped with modern amenities to help you stay productive and inspired. Whether you're building your business, working remotely, or collaborating with a team, Assorted Coworking provides the environment you need to thrive.
-              </p>
-              <p className="text-lg leading-relaxed text-muted-foreground mb-6">
-                More than just a workspace, we host events, networking sessions, and opportunities that connect like-minded individuals and spark new ideas. Our mission is to create a vibrant community where people can work smarter, grow faster, and succeed together.
-              </p>
-              <p className="text-lg leading-relaxed text-muted-foreground">
-                Join us and discover a coworking experience built around innovation, collaboration, and comfort.
-              </p>
+  return (
+    <section id="about" className="py-24 relative overflow-hidden">
+      {/* Decorative blobs */}
+      <motion.div
+        className="blob absolute -top-40 -left-40 w-96 h-96 bg-primary/5 pointer-events-none"
+        animate={{ scale: [1, 1.1, 1], rotate: [0, 5, 0] }}
+        transition={{ duration: 12, repeat: Infinity }}
+      />
+      <motion.div
+        className="blob-slow absolute -bottom-20 right-0 w-72 h-72 bg-accent/8 pointer-events-none"
+        animate={{ scale: [1, 1.15, 1] }}
+        transition={{ duration: 10, repeat: Infinity }}
+      />
+
+      <div className="section-container relative z-10">
+        {/* Stats row */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+        >
+          {stats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: i * 0.1, duration: 0.5, type: "spring" }}
+              className="relative bg-card rounded-2xl p-6 border border-border text-center overflow-hidden group"
+              whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
+            >
+              <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+              <Counter value={stat.value} suffix={stat.suffix} color={stat.color} />
+              <p className="text-sm text-muted-foreground mt-2 font-medium">{stat.label}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Main content */}
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left: Visual */}
+          <motion.div
+            ref={textRef}
+            initial={{ opacity: 0, x: -60 }}
+            animate={textInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="relative"
+          >
+            {/* Animated workspace illustration */}
+            <div className="relative rounded-3xl overflow-hidden aspect-square max-w-lg mx-auto">
+              <div className="absolute inset-0 animated-gradient" />
+
+              {/* Floating cards inside illustration */}
+              <div className="absolute inset-0 p-8 flex flex-col justify-between">
+                {/* Top decoration */}
+                <div className="flex justify-between items-start">
+                  <motion.div
+                    className="bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/20"
+                    animate={{ y: [0, -8, 0] }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                  >
+                    <div className="text-white/60 text-xs mb-1">Current Occupancy</div>
+                    <div className="text-white font-bold text-lg">63 / 80 Seats</div>
+                    <div className="mt-2 h-1.5 bg-white/20 rounded-full">
+                      <motion.div
+                        className="h-full bg-accent rounded-full"
+                        initial={{ width: "0%" }}
+                        animate={textInView ? { width: "79%" } : {}}
+                        transition={{ duration: 1.5, delay: 0.5 }}
+                      />
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    className="bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/20"
+                    animate={{ y: [0, 8, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+                  >
+                    <div className="text-white/60 text-xs mb-1">WiFi Speed</div>
+                    <div className="text-accent font-black text-2xl">1 Gbps</div>
+                    <div className="text-white/50 text-xs">Fiber Optic</div>
+                  </motion.div>
+                </div>
+
+                {/* Center big text */}
+                <div className="text-center">
+                  <motion.div
+                    className="text-7xl font-black text-white/10 select-none"
+                    animate={{ scale: [1, 1.05, 1], opacity: [0.1, 0.15, 0.1] }}
+                    transition={{ duration: 5, repeat: Infinity }}
+                  >
+                    WORK
+                  </motion.div>
+                </div>
+
+                {/* Bottom decoration */}
+                <div className="flex justify-between items-end">
+                  <motion.div
+                    className="bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/20"
+                    animate={{ y: [0, 6, 0] }}
+                    transition={{ duration: 3.5, repeat: Infinity, delay: 0.5 }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                      <span className="text-white text-sm font-semibold">Open Now</span>
+                    </div>
+                    <div className="text-white/50 text-xs mt-1">D-12 Markaz</div>
+                  </motion.div>
+
+                  <motion.div
+                    className="bg-accent rounded-2xl p-4 shadow-lg"
+                    animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.05, 1] }}
+                    transition={{ duration: 6, repeat: Infinity }}
+                  >
+                    <div className="text-white font-bold text-sm">Free Trial</div>
+                    <div className="text-white/80 text-xs">1 Day Pass</div>
+                  </motion.div>
+                </div>
+              </div>
             </div>
 
-            <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-border">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-1">80+</div>
-                <div className="text-sm text-muted-foreground">Happy Members</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-1">24/7</div>
-                <div className="text-sm text-muted-foreground">Access Hours</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-1">100%</div>
-                <div className="text-sm text-muted-foreground">Satisfaction</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-1">1+</div>
-                <div className="text-sm text-muted-foreground">Year Experience</div>
-              </div>
-            </div>
-          </div>
+            {/* Floating badge */}
+            <motion.div
+              className="absolute -bottom-6 -right-6 bg-primary rounded-2xl p-5 shadow-2xl border border-primary/50"
+              animate={{ rotate: [0, 3, -3, 0] }}
+              transition={{ duration: 6, repeat: Infinity }}
+              whileHover={{ scale: 1.1 }}
+            >
+              <div className="text-white/70 text-xs">Est.</div>
+              <div className="text-white font-black text-2xl">2024</div>
+              <div className="text-accent text-xs font-bold">Islamabad</div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right: Text */}
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            animate={textInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <motion.span
+              className="inline-block text-sm font-bold text-accent tracking-widest uppercase mb-4"
+              initial={{ opacity: 0 }}
+              animate={textInView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.4 }}
+            >
+              Our Story
+            </motion.span>
+            <h2 className="text-4xl md:text-5xl font-black mb-8 leading-tight">
+              More Than a Desk.{" "}
+              <span className="text-gradient">A Community.</span>
+            </h2>
+
+            {[
+              "At Assorted Coworking, we believe work is more than just a desk and a chair — it's about community, creativity, and growth. Located in the heart of D-12 Markaz, Islamabad, our space brings entrepreneurs, freelancers, startups, and professionals together under one roof.",
+              "We offer flexible workspaces, private offices, and meeting rooms equipped with modern amenities to help you stay productive and inspired. Whether you're building your business, working remotely, or collaborating with a team, we have the environment you need to thrive.",
+              "More than just a workspace, we host events, networking sessions, and opportunities that connect like-minded individuals and spark new ideas. Our mission: create a vibrant community where people work smarter, grow faster, and succeed together.",
+            ].map((text, i) => (
+              <motion.p
+                key={i}
+                className="text-muted-foreground leading-relaxed mb-5 text-base"
+                initial={{ opacity: 0, y: 20 }}
+                animate={textInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.5 + i * 0.12 }}
+              >
+                {text}
+              </motion.p>
+            ))}
+
+            <motion.button
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+              className="mt-4 px-8 py-4 rounded-2xl bg-primary text-white font-bold relative overflow-hidden group"
+              initial={{ opacity: 0, y: 20 }}
+              animate={textInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.9 }}
+              whileHover={{ scale: 1.03, boxShadow: "0 10px 30px rgba(20,70,180,0.3)" }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <motion.span
+                className="absolute inset-0 bg-white/15"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "100%" }}
+                transition={{ duration: 0.5 }}
+              />
+              <span className="relative">Join Our Community →</span>
+            </motion.button>
+          </motion.div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default About;
