@@ -6,6 +6,7 @@ import logo from "@/assets/logo.png";
 const NAV_ITEMS = [
   { label: "Home", id: "home" },
   { label: "About Us", id: "about" },
+  { label: "Gallery", id: "gallery" },
   { label: "Pricing", id: "pricing" },
   { label: "Contact", id: "contact" },
 ];

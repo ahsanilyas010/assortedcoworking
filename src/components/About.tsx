@@ -100,17 +100,17 @@ const About = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
 
               {/* Floating cards inside illustration */}
-              <div className="absolute inset-0 p-8 flex flex-col justify-between">
+              <div className="absolute inset-0 p-3 sm:p-6 flex flex-col justify-between">
                 {/* Top decoration */}
-                <div className="flex justify-between items-start">
+                <div className="flex justify-between items-start gap-2">
                   <motion.div
-                    className="bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/20"
+                    className="bg-white/15 backdrop-blur-md rounded-xl p-2.5 sm:p-4 border border-white/20 min-w-0"
                     animate={{ y: [0, -8, 0] }}
                     transition={{ duration: 4, repeat: Infinity }}
                   >
-                    <div className="text-white/60 text-xs mb-1">Current Occupancy</div>
-                    <div className="text-white font-bold text-lg">22 / 30 Seats</div>
-                    <div className="mt-2 h-1.5 bg-white/20 rounded-full">
+                    <div className="text-white/60 text-[10px] sm:text-xs mb-1">Current Occupancy</div>
+                    <div className="text-white font-bold text-sm sm:text-lg">22 / 30 Seats</div>
+                    <div className="mt-1.5 h-1.5 bg-white/20 rounded-full">
                       <motion.div
                         className="h-full bg-accent rounded-full"
                         initial={{ width: "0%" }}
@@ -121,20 +121,20 @@ const About = () => {
                   </motion.div>
 
                   <motion.div
-                    className="bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/20"
+                    className="bg-white/15 backdrop-blur-md rounded-xl p-2.5 sm:p-4 border border-white/20 min-w-0"
                     animate={{ y: [0, 8, 0] }}
                     transition={{ duration: 5, repeat: Infinity, delay: 1 }}
                   >
-                    <div className="text-white/60 text-xs mb-1">WiFi Speed</div>
-                    <div className="text-accent font-black text-2xl">1 Gbps</div>
-                    <div className="text-white/50 text-xs">Fiber Optic</div>
+                    <div className="text-white/60 text-[10px] sm:text-xs mb-1">WiFi Speed</div>
+                    <div className="text-accent font-black text-lg sm:text-2xl">1 Gbps</div>
+                    <div className="text-white/50 text-[10px] sm:text-xs">Fiber Optic</div>
                   </motion.div>
                 </div>
 
                 {/* Center big text */}
                 <div className="text-center">
                   <motion.div
-                    className="text-7xl font-black text-white/10 select-none"
+                    className="text-5xl sm:text-7xl font-black text-white/10 select-none"
                     animate={{ scale: [1, 1.05, 1], opacity: [0.1, 0.15, 0.1] }}
                     transition={{ duration: 5, repeat: Infinity }}
                   >
@@ -143,40 +143,40 @@ const About = () => {
                 </div>
 
                 {/* Bottom decoration */}
-                <div className="flex justify-between items-end">
+                <div className="flex justify-between items-end gap-2">
                   <motion.div
-                    className="bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/20"
+                    className="bg-white/15 backdrop-blur-md rounded-xl p-2.5 sm:p-4 border border-white/20 min-w-0"
                     animate={{ y: [0, 6, 0] }}
                     transition={{ duration: 3.5, repeat: Infinity, delay: 0.5 }}
                   >
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                      <span className="text-white text-sm font-semibold">Open Now</span>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
+                      <span className="text-white text-xs sm:text-sm font-semibold">Open Now</span>
                     </div>
-                    <div className="text-white/50 text-xs mt-1">D-12 Markaz</div>
+                    <div className="text-white/50 text-[10px] sm:text-xs mt-1">D-12 Markaz</div>
                   </motion.div>
 
                   <motion.div
-                    className="bg-accent rounded-2xl p-4 shadow-lg"
+                    className="bg-accent rounded-xl p-2.5 sm:p-4 shadow-lg flex-shrink-0"
                     animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.05, 1] }}
                     transition={{ duration: 6, repeat: Infinity }}
                   >
-                    <div className="text-white font-bold text-sm">Free Trial</div>
-                    <div className="text-white/80 text-xs">1 Day Pass</div>
+                    <div className="text-white font-bold text-xs sm:text-sm">Free Trial</div>
+                    <div className="text-white/80 text-[10px] sm:text-xs">1 Day Pass</div>
                   </motion.div>
                 </div>
               </div>
             </div>
 
-            {/* Floating badge */}
+            {/* Floating badge — tucked inside on mobile, outside on lg */}
             <motion.div
-              className="absolute -bottom-6 -right-6 bg-primary rounded-2xl p-5 shadow-2xl border border-primary/50"
+              className="absolute bottom-3 right-3 lg:-bottom-6 lg:-right-6 bg-primary rounded-2xl p-3 sm:p-5 shadow-2xl border border-primary/50"
               animate={{ rotate: [0, 3, -3, 0] }}
               transition={{ duration: 6, repeat: Infinity }}
               whileHover={{ scale: 1.1 }}
             >
               <div className="text-white/70 text-xs">Est.</div>
-              <div className="text-white font-black text-2xl">2024</div>
+              <div className="text-white font-black text-xl sm:text-2xl">2024</div>
               <div className="text-accent text-xs font-bold">Islamabad</div>
             </motion.div>
           </motion.div>
