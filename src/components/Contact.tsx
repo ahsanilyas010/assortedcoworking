@@ -130,11 +130,11 @@ const Contact = () => {
             Let's Connect
           </motion.span>
           <h2 className="text-4xl md:text-5xl font-black mb-4">
-            Ready to{" "}
-            <span className="text-gradient">Get Started?</span>
+            Book Your Free Coworking{" "}
+            <span className="text-gradient">Trial Today</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Book a free tour, ask a question, or just say hi. We'd love to hear from you!
+            Claim your free 1-day pass, ask about internship workspace memberships, or book a tour of our D-12 Markaz coworking space in Islamabad!
           </p>
         </motion.div>
 

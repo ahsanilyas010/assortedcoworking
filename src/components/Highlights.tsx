@@ -5,29 +5,29 @@ import { Snowflake, Users, Wifi, Volume2 } from "lucide-react";
 const highlights = [
   {
     icon: Snowflake,
-    title: "Air-Conditioned",
-    description: "Stay cool and comfortable all day long in our climate-controlled rooms",
+    title: "Private AC Rooms",
+    description: "Stay productive in fully air-conditioned private offices — perfect for freelancers and small teams in Islamabad",
     color: "from-blue-500 to-cyan-400",
     glow: "rgba(59,130,246,0.4)",
   },
   {
     icon: Users,
-    title: "Meeting Rooms",
-    description: "Professional private spaces for your team discussions and client calls",
+    title: "Meeting Room Rental",
+    description: "Professional meeting room available for client presentations, team calls, and workshops in D-12 Markaz",
     color: "from-purple-500 to-pink-400",
     glow: "rgba(168,85,247,0.4)",
   },
   {
     icon: Wifi,
-    title: "High-Speed WiFi",
-    description: "Lightning-fast fiber internet for smooth video calls and uploads",
+    title: "1 Gbps Fiber WiFi",
+    description: "High-speed fiber internet — the fastest coworking space WiFi in Islamabad for seamless video calls and uploads",
     color: "from-accent to-orange-400",
     glow: "rgba(243,111,43,0.4)",
   },
   {
     icon: Volume2,
-    title: "Silent Zone",
-    description: "Carefully curated peaceful environment for maximum focus",
+    title: "Silent Focus Zone",
+    description: "Dedicated quiet workspace for deep work — ideal for remote workers and university interns needing concentration",
     color: "from-green-500 to-emerald-400",
     glow: "rgba(34,197,94,0.4)",
   },
@@ -104,9 +104,10 @@ const Highlights = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-3">
-            Everything You <span className="text-gradient">Need to Thrive</span>
+            Premium Coworking Space{" "}
+            <span className="text-gradient">Amenities in Islamabad</span>
           </h2>
-          <p className="text-muted-foreground">Premium amenities, zero compromise</p>
+          <p className="text-muted-foreground">Everything a professional workspace needs — high-speed WiFi, AC rooms, meeting rooms & more</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

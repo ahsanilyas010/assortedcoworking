@@ -134,10 +134,10 @@ const Hero = () => {
               animate={{ scale: [1, 1.5, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
-            D-12 Markaz, Islamabad · Now Open
+            Best Coworking Space · D-12 Markaz, Islamabad
           </motion.div>
 
-          {/* Headline */}
+          {/* H1 — primary keyword target */}
           <div className="mb-6 overflow-hidden">
             <motion.h1
               className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight"
@@ -145,7 +145,7 @@ const Hero = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              Your{" "}
+              Islamabad's Most{" "}
               <span className="relative inline-block">
                 <AnimatePresence mode="wait">
                   <motion.span
@@ -178,7 +178,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.6 }}
           >
-            Work smarter with flexible, comfortable, and professional spaces designed for freelancers, startups & teams.
+            Shared office space in D-12 Markaz, Zarpar Arcade — flexible day passes, private offices & meeting rooms for freelancers, startups & remote teams.
           </motion.p>
 
           <motion.div

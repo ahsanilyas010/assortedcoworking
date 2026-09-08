@@ -195,9 +195,9 @@ const About = () => {
             </h2>
 
             {[
-              "At Assorted Coworking, we believe work is more than just a desk and a chair — it's about community, creativity, and growth. Located in the heart of D-12 Markaz, Islamabad, our space brings entrepreneurs, freelancers, startups, and professionals together under one roof.",
-              "We offer flexible workspaces, private offices, and meeting rooms equipped with modern amenities to help you stay productive and inspired. Whether you're building your business, working remotely, or collaborating with a team, we have the environment you need to thrive.",
-              "More than just a workspace, we host events, networking sessions, and opportunities that connect like-minded individuals and spark new ideas. Our mission: create a vibrant community where people work smarter, grow faster, and succeed together.",
+              "At Assorted Coworking — Islamabad's most vibrant coworking space — we believe work is more than just a desk and a chair. Located in the heart of D-12 Markaz, Zarpar Arcade, our shared office space brings entrepreneurs, freelancers, startups, and professionals together under one roof.",
+              "We offer flexible hot desks, private offices for rent, and meeting rooms equipped with high-speed fiber WiFi and modern amenities. Whether you need a day pass coworking space or a full monthly membership with 24/7 access, we have the perfect plan for you.",
+              "More than just an affordable office space in Islamabad, we host networking events and community sessions that connect like-minded professionals. Ideal for remote workers, student interns, small teams, and anyone seeking the best coworking space near D-12 Markaz.",
             ].map((text, i) => (
               <motion.p
                 key={i}

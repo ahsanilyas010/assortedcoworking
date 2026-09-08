@@ -5,17 +5,17 @@ import { MapPin, Users2, Clock, Sparkles, Shield, Coffee } from "lucide-react";
 const benefits = [
   {
     icon: MapPin,
-    title: "Prime Location",
-    description: "Zarpar Arcade, D-12 Markaz — the heart of Islamabad with superb connectivity",
-    stat: "5 min",
-    statLabel: "from city center",
+    title: "Best Location in D-12",
+    description: "Coworking space near Zarpar Arcade D-12 Markaz — Islamabad's most connected commercial hub for professionals",
+    stat: "D-12",
+    statLabel: "Markaz, Islamabad",
     color: "from-rose-500 to-pink-500",
     delay: 0,
   },
   {
     icon: Users2,
-    title: "Thriving Community",
-    description: "Join 80+ entrepreneurs, freelancers and startup founders growing together",
+    title: "Startup & Freelancer Community",
+    description: "Join 80+ entrepreneurs, freelancers, and startup founders — the best coworking community for startups in Islamabad",
     stat: "80+",
     statLabel: "active members",
     color: "from-violet-500 to-purple-500",
@@ -23,8 +23,8 @@ const benefits = [
   },
   {
     icon: Clock,
-    title: "Flexible Hours",
-    description: "Work on your own schedule — our space adapts to your lifestyle, not the other way",
+    title: "24/7 Flexible Access",
+    description: "Shared office space with 24/7 access in Islamabad — work on your own schedule with a monthly membership",
     stat: "24/7",
     statLabel: "access available",
     color: "from-blue-500 to-cyan-500",
@@ -32,8 +32,8 @@ const benefits = [
   },
   {
     icon: Sparkles,
-    title: "Spotless Spaces",
-    description: "Maintained to hotel-level standards — clean, fresh and ready when you arrive",
+    title: "100% Member Satisfaction",
+    description: "Consistently rated the best coworking space in Islamabad by freelancers, remote workers and student interns",
     stat: "100%",
     statLabel: "satisfaction rate",
     color: "from-accent to-yellow-500",
@@ -41,8 +41,8 @@ const benefits = [
   },
   {
     icon: Coffee,
-    title: "Free Refreshments",
-    description: "Unlimited tea and coffee included — fuel your best work without the tab",
+    title: "Free Tea & Coffee",
+    description: "Unlimited free tea and coffee for all members — a coworking perk that keeps you energised all day long",
     stat: "∞",
     statLabel: "cups of coffee",
     color: "from-amber-500 to-orange-500",
@@ -50,8 +50,8 @@ const benefits = [
   },
   {
     icon: Shield,
-    title: "Safe & Secure",
-    description: "CCTV-monitored premises with secure access for your complete peace of mind",
+    title: "CCTV-Secured Premises",
+    description: "Your private office and shared workspace in Islamabad is CCTV-monitored 24/7 for complete security",
     stat: "24/7",
     statLabel: "monitored",
     color: "from-green-500 to-emerald-500",
@@ -166,11 +166,11 @@ const WhyChooseUs = () => {
             Our Advantages
           </motion.span>
           <h2 className="text-4xl md:text-5xl font-black mb-4">
-            Why Professionals{" "}
-            <span className="text-gradient">Choose Us</span>
+            Why We're Islamabad's{" "}
+            <span className="text-gradient">Best Coworking Space</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            The perfect blend of comfort, convenience, and community — crafted for your success
+            The most affordable flexible workspace in D-12 Markaz — built for freelancers, startups, remote workers & student interns
           </p>
         </motion.div>
 
