@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import interiorImage from "@/assets/assorted-coworking-interior-islamabad.jpg";
 
 const stats = [
   { value: 30, suffix: "+", label: "Happy Members", color: "from-blue-500 to-indigo-500" },
@@ -89,9 +90,14 @@ const About = () => {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
-            {/* Animated workspace illustration */}
+            {/* Real interior photo with floating overlays */}
             <div className="relative rounded-3xl overflow-hidden aspect-square max-w-lg mx-auto">
-              <div className="absolute inset-0 animated-gradient" />
+              <img
+                src={interiorImage}
+                alt="Assorted Coworking interior - Beautiful coworking space in D-12 Islamabad with circle window and plant wall"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
 
               {/* Floating cards inside illustration */}
               <div className="absolute inset-0 p-8 flex flex-col justify-between">
