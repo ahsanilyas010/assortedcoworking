@@ -178,7 +178,7 @@ const Contact = () => {
               className="rounded-2xl overflow-hidden border border-border shadow-lg h-52"
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3319.7267489856735!2d73.0439965!3d33.7104854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbf4e5e5e5e5e%3A0x5e5e5e5e5e5e5e5e!2sZarpar%20Arcade%2C%20D-12%20Markaz%2C%20Islamabad!5e0!3m2!1sen!2s!4v1234567890"
+                src="https://maps.google.com/maps?q=33.7037833,72.9474485&t=&z=17&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
