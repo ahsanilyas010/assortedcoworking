@@ -1,111 +1,261 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, Send, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
+
+const contactInfo = [
+  {
+    icon: MapPin,
+    title: "Visit Us",
+    lines: ["FF 27, Zarpar Arcade", "D-12 Markaz, Islamabad, Pakistan"],
+    color: "from-blue-500 to-indigo-500",
+  },
+  {
+    icon: Phone,
+    title: "Call Us",
+    lines: ["+92 321 852 6405"],
+    color: "from-accent to-orange-500",
+  },
+  {
+    icon: Mail,
+    title: "Email Us",
+    lines: ["hello@assorted.business"],
+    color: "from-green-500 to-emerald-500",
+  },
+];
+
+const InputField = ({
+  type = "text",
+  name,
+  placeholder,
+  value,
+  onChange,
+  required,
+  textarea,
+  rows,
+  delay,
+  inView,
+}: {
+  type?: string;
+  name: string;
+  placeholder: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  required?: boolean;
+  textarea?: boolean;
+  rows?: number;
+  delay: number;
+  inView: boolean;
+}) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={inView ? { opacity: 1, y: 0 } : {}}
+    transition={{ delay, duration: 0.5 }}
+    className="relative group"
+  >
+    {textarea ? (
+      <Textarea
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        required={required}
+        rows={rows}
+        className="border-2 border-border bg-background focus:border-primary transition-colors duration-300 rounded-xl resize-none"
+      />
+    ) : (
+      <Input
+        type={type}
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        required={required}
+        className="h-13 border-2 border-border bg-background focus:border-primary transition-colors duration-300 rounded-xl"
+      />
+    )}
+    <motion.div
+      className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary to-accent rounded-full"
+      initial={{ scaleX: 0 }}
+      whileFocus={{ scaleX: 1 }}
+      transition={{ duration: 0.3 }}
+      style={{ transformOrigin: "left" }}
+    />
+  </motion.div>
+);
+
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: ""
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Thank you! We'll get back to you soon.");
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      message: ""
-    });
+    setSubmitted(true);
+    toast.success("Message sent! We'll get back to you soon.");
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({ name: "", email: "", phone: "", message: "" });
+    }, 3000);
   };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  return <section id="contact" className="py-20 bg-secondary">
-      <div className="section-container">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
-          <p className="text-lg text-muted-foreground">Ready to elevate your work experience? Contact us today!</p>
-        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div className="bg-background rounded-2xl shadow-xl p-8">
-            <h3 className="text-2xl font-semibold mb-6">Send us a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <Input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleChange} required className="h-12" />
-              </div>
-              <div>
-                <Input type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleChange} required className="h-12" />
-              </div>
-              <div>
-                <Input type="tel" name="phone" placeholder="Your Phone" value={formData.phone} onChange={handleChange} required className="h-12" />
-              </div>
-              <div>
-                <Textarea name="message" placeholder="Your Message" value={formData.message} onChange={handleChange} required rows={5} />
-              </div>
-              <Button type="submit" variant="hero" size="lg" className="w-full">
-                Submit
-              </Button>
-            </form>
+  return (
+    <section id="contact" className="py-24 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div ref={ref} className="section-container relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
+        >
+          <motion.span
+            className="inline-block text-sm font-bold text-accent tracking-widest uppercase mb-4"
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.2 }}
+          >
+            Let's Connect
+          </motion.span>
+          <h2 className="text-4xl md:text-5xl font-black mb-4">
+            Ready to{" "}
+            <span className="text-gradient">Get Started?</span>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+            Book a free tour, ask a question, or just say hi. We'd love to hear from you!
+          </p>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-5 gap-12 items-start">
+          {/* Contact info */}
+          <div className="lg:col-span-2 space-y-5">
+            {contactInfo.map((info, i) => {
+              const Icon = info.icon;
+              return (
+                <motion.div
+                  key={info.title}
+                  initial={{ opacity: 0, x: -40 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 0.1 + i * 0.12, duration: 0.6 }}
+                  whileHover={{ x: 6, transition: { duration: 0.2 } }}
+                  className="flex items-start gap-4 bg-card rounded-2xl p-5 border border-border group overflow-hidden relative"
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-r ${info.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                  <motion.div
+                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${info.color} flex items-center justify-center flex-shrink-0 shadow-lg`}
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <Icon className="w-6 h-6 text-white" />
+                  </motion.div>
+                  <div>
+                    <div className="font-bold mb-1">{info.title}</div>
+                    {info.lines.map((line) => (
+                      <div key={line} className="text-muted-foreground text-sm">{line}</div>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
+
+            {/* Map */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.5 }}
+              className="rounded-2xl overflow-hidden border border-border shadow-lg h-52"
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3319.7267489856735!2d73.0439965!3d33.7104854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbf4e5e5e5e5e%3A0x5e5e5e5e5e5e5e5e!2sZarpar%20Arcade%2C%20D-12%20Markaz%2C%20Islamabad!5e0!3m2!1sen!2s!4v1234567890"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Assorted Coworking Location"
+              />
+            </motion.div>
           </div>
 
-          {/* Contact Info & Map */}
-          <div className="space-y-6">
-            {/* Contact Details */}
-            <div className="bg-background rounded-2xl shadow-xl p-8">
-              <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center mr-4 flex-shrink-0">
-                    <MapPin className="w-5 h-5 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">Address</h4>
-                    <p className="text-muted-foreground">
-                      Our office is located at Sector D-12 Markaz, Zarpar Arcade, Office #27, Islamabad.
-                    </p>
-                  </div>
-                </div>
+          {/* Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 0.2, duration: 0.7 }}
+            className="lg:col-span-3 bg-card rounded-3xl border border-border shadow-xl p-8 relative overflow-hidden"
+          >
+            {/* Corner decoration */}
+            <motion.div
+              className="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-primary/5"
+              animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
+              transition={{ duration: 15, repeat: Infinity }}
+            />
 
-                <div className="flex items-start">
-                  <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center mr-4 flex-shrink-0">
-                    <Phone className="w-5 h-5 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">Phone</h4>
-                    <p className="text-muted-foreground">+92 3218526405</p>
-                  </div>
-                </div>
+            <h3 className="text-2xl font-bold mb-7 relative z-10">Send a Message</h3>
 
-                <div className="flex items-start">
-                  <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center mr-4 flex-shrink-0">
-                    <Mail className="w-5 h-5 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">Email</h4>
-                    <p className="text-muted-foreground">hello@assorted.business</p>
-                  </div>
+            {submitted ? (
+              <motion.div
+                className="flex flex-col items-center justify-center py-16 gap-4"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: "spring", bounce: 0.4 }}
+              >
+                <motion.div
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <CheckCircle2 className="w-20 h-20 text-green-500" />
+                </motion.div>
+                <p className="text-xl font-bold">Message Sent!</p>
+                <p className="text-muted-foreground text-center">We'll be in touch soon.</p>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <InputField name="name" placeholder="Your Name" value={formData.name} onChange={handleChange} required delay={0.3} inView={inView} />
+                  <InputField type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleChange} required delay={0.35} inView={inView} />
                 </div>
-              </div>
-            </div>
+                <InputField type="tel" name="phone" placeholder="Your Phone" value={formData.phone} onChange={handleChange} required delay={0.4} inView={inView} />
+                <InputField textarea name="message" placeholder="Your Message — What are you looking for?" value={formData.message} onChange={handleChange} required rows={5} delay={0.45} inView={inView} />
 
-            {/* Map Placeholder */}
-            <div className="bg-background rounded-2xl shadow-xl overflow-hidden h-64">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3319.7267489856735!2d73.0439965!3d33.7104854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbf4e5e5e5e5e%3A0x5e5e5e5e5e5e5e5e!2sZarpar%20Arcade%2C%20D-12%20Markaz%2C%20Islamabad!5e0!3m2!1sen!2s!4v1234567890" width="100%" height="100%" style={{
-              border: 0
-            }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Location Map" />
-            </div>
-          </div>
+                <motion.button
+                  type="submit"
+                  className="w-full h-14 rounded-2xl bg-primary text-white font-bold text-base flex items-center justify-center gap-3 relative overflow-hidden"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.55 }}
+                  whileHover={{ scale: 1.02, boxShadow: "0 10px 30px rgba(20,70,180,0.3)" }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <motion.span
+                    className="absolute inset-0 bg-white/15"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: "100%" }}
+                    transition={{ duration: 0.5 }}
+                  />
+                  <Send className="w-5 h-5 relative" />
+                  <span className="relative">Send Message</span>
+                </motion.button>
+              </form>
+            )}
+          </motion.div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Contact;
