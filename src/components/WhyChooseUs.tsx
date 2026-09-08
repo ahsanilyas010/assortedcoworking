@@ -15,8 +15,8 @@ const benefits = [
   {
     icon: Users2,
     title: "Startup & Freelancer Community",
-    description: "Join 80+ entrepreneurs, freelancers, and startup founders — the best coworking community for startups in Islamabad",
-    stat: "80+",
+    description: "Join 30+ entrepreneurs, freelancers, and startup founders — the best coworking community for startups in Islamabad",
+    stat: "30+",
     statLabel: "active members",
     color: "from-violet-500 to-purple-500",
     delay: 0.1,
