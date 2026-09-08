@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 const stats = [
-  { value: 80, suffix: "+", label: "Happy Members", color: "from-blue-500 to-indigo-500" },
+  { value: 30, suffix: "+", label: "Happy Members", color: "from-blue-500 to-indigo-500" },
   { value: 24, suffix: "/7", label: "Access Hours", color: "from-accent to-orange-500" },
   { value: 100, suffix: "%", label: "Satisfaction", color: "from-green-500 to-emerald-500" },
   { value: 1, suffix: "+ yr", label: "of Excellence", color: "from-purple-500 to-pink-500" },
@@ -103,12 +103,12 @@ const About = () => {
                     transition={{ duration: 4, repeat: Infinity }}
                   >
                     <div className="text-white/60 text-xs mb-1">Current Occupancy</div>
-                    <div className="text-white font-bold text-lg">63 / 80 Seats</div>
+                    <div className="text-white font-bold text-lg">22 / 30 Seats</div>
                     <div className="mt-2 h-1.5 bg-white/20 rounded-full">
                       <motion.div
                         className="h-full bg-accent rounded-full"
                         initial={{ width: "0%" }}
-                        animate={textInView ? { width: "79%" } : {}}
+                        animate={textInView ? { width: "73%" } : {}}
                         transition={{ duration: 1.5, delay: 0.5 }}
                       />
                     </div>
@@ -196,7 +196,7 @@ const About = () => {
 
             {[
               "At Assorted Coworking — Islamabad's most vibrant coworking space — we believe work is more than just a desk and a chair. Located in the heart of D-12 Markaz, Zarpar Arcade, our shared office space brings entrepreneurs, freelancers, startups, and professionals together under one roof.",
-              "We offer flexible hot desks, private offices for rent, and meeting rooms equipped with high-speed fiber WiFi and modern amenities. Whether you need a day pass coworking space or a full monthly membership with 24/7 access, we have the perfect plan for you.",
+              "We offer flexible hot desks, private offices for rent, and meeting rooms equipped with high-speed fiber WiFi and modern amenities. With 30 seats across shared and private spaces, whether you need a day pass coworking space or a full monthly membership with 24/7 access, we have the perfect plan for you.",
               "More than just an affordable office space in Islamabad, we host networking events and community sessions that connect like-minded professionals. Ideal for remote workers, student interns, small teams, and anyone seeking the best coworking space near D-12 Markaz.",
             ].map((text, i) => (
               <motion.p
