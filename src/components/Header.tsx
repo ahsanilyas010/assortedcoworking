@@ -71,6 +71,7 @@ const Header = () => {
                   src={logo}
                   alt="Assorted Coworking"
                   className="h-14 w-auto object-contain relative z-10"
+                  style={{ filter: "brightness(0) invert(1)" }}
                 />
               </div>
               <div className="hidden sm:block">
