@@ -178,7 +178,7 @@ const Contact = () => {
               className="rounded-2xl overflow-hidden border border-border shadow-lg h-52"
             >
               <iframe
-                src="https://maps.google.com/maps?q=33.7037833,72.9474485&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=PW3X%2BG26+Islamabad&t=&z=17&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
