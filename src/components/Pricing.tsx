@@ -1,173 +1,218 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Check, Zap, Building2 } from "lucide-react";
+import { Check, Sun, Sunset, Moon, Clock, Calendar, CalendarDays, Armchair, Lock, Users, Zap, Wifi, Coffee, Printer, Wind, Fingerprint } from "lucide-react";
 
-const plans = [
+const AMENITIES = [
+  { icon: Wifi, label: "High Speed WiFi" },
+  { icon: Coffee, label: "Tea & Coffee" },
+  { icon: Printer, label: "Printing" },
+  { icon: Wind, label: "Air Conditioned" },
+  { icon: Fingerprint, label: "Fingerprint Entry" },
+];
+
+const SHIFT_PLANS = [
   {
-    name: "Day Pass",
-    price: "1,500",
-    period: "/day",
-    description: "Flexible hot desk — walk in, work, leave",
-    badge: null,
-    icon: Zap,
+    name: "Day Shift",
+    hours: "9AM to 5PM",
+    price: "15,000",
+    icon: Sun,
     color: "from-blue-600 to-indigo-600",
-    features: [
-      "High-Speed WiFi",
-      "Free Tea & Coffee",
-      "Air-Conditioned Space",
-      "Quiet Environment",
-      "Flexible Timings",
-    ],
+    barColor: "bg-blue-600",
+    barStart: 0,
+    barWidth: 44,
+    badge: null,
   },
   {
-    name: "Monthly Membership",
-    price: "12,000",
-    period: "/month",
-    description: "Private office with 24/7 access — your dedicated workspace",
-    badge: "MOST POPULAR",
-    icon: Building2,
+    name: "Afternoon Shift",
+    hours: "2PM to 10PM",
+    price: "13,500",
+    icon: Sunset,
     color: "from-accent to-orange-500",
-    features: [
-      "Private AC Room",
-      "Meeting Room Access",
-      "High-Speed WiFi",
-      "Silent Environment",
-      "Unlimited Tea & Coffee",
-      "24/7 Open Access",
-    ],
+    barColor: "bg-accent",
+    barStart: 28,
+    barWidth: 44,
+    badge: null,
+  },
+  {
+    name: "Night Shift",
+    hours: "5PM to 3AM",
+    sub: "Built for US hours.",
+    price: "12,000",
+    icon: Moon,
+    color: "from-green-600 to-emerald-500",
+    barColor: "bg-green-600",
+    barStart: 44,
+    barWidth: 56,
+    badge: null,
+  },
+  {
+    name: "24 Hour Access",
+    hours: "Come and go any time, all month",
+    price: "18,000",
+    icon: Clock,
+    color: "from-primary to-blue-800",
+    barColor: "bg-primary",
+    barStart: 0,
+    barWidth: 100,
+    badge: "BEST VALUE",
   },
 ];
 
-const PricingCard = ({ plan, index }: { plan: typeof plans[0]; index: number }) => {
-  const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
+const FLEXIBLE_PLANS = [
+  {
+    name: "Day Pass",
+    desc: "Full access for one day",
+    price: "1,500",
+    period: "",
+    icon: Calendar,
+    color: "from-green-500 to-emerald-500",
+  },
+  {
+    name: "10 Day Flex Pass",
+    desc: "Use any 10 days within a month",
+    price: "10,000",
+    period: "/ month",
+    icon: CalendarDays,
+    color: "from-green-600 to-teal-600",
+  },
+  {
+    name: "Dedicated Desk",
+    desc: "Your own reserved seat, 24/7 access",
+    price: "22,000",
+    period: "/ month",
+    icon: Armchair,
+    color: "from-green-700 to-emerald-700",
+  },
+];
+
+const PRIVATE_PLANS = [
+  {
+    name: "Private Room",
+    desc: "Lockable team office with 24/7 access",
+    price: "65,000",
+    period: "/ month",
+    icon: Lock,
+    color: "from-primary to-blue-800",
+    highlight: true,
+  },
+  {
+    name: "Meeting Room Access",
+    desc: "Add to any membership",
+    price: "+ 5,000",
+    period: "/ month",
+    icon: Users,
+    color: "from-primary to-indigo-700",
+    highlight: false,
+  },
+];
+
+const scrollToContact = () =>
+  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+
+const ShiftRow = ({ plan, index, inView }: { plan: typeof SHIFT_PLANS[0]; index: number; inView: boolean }) => {
   const Icon = plan.icon;
-  const isPopular = !!plan.badge;
-
-  const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 80, rotateX: 10 }}
-      animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -8, scale: 1.02 }}
-      className={`relative rounded-3xl overflow-hidden ${
-        isPopular
-          ? "border-2 border-accent shadow-2xl"
-          : "border border-border shadow-lg"
+      initial={{ opacity: 0, x: -30 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
+      className={`relative rounded-2xl border bg-card p-4 md:p-5 ${
+        plan.badge ? "border-accent shadow-lg shadow-accent/10" : "border-border"
       }`}
-      style={{
-        boxShadow: isPopular
-          ? "0 20px 60px rgba(243,111,43,0.2), 0 0 0 2px rgba(243,111,43,0.3)"
-          : "0 8px 30px rgba(0,0,0,0.08)",
-      }}
     >
-      {/* Popular badge */}
-      {isPopular && (
-        <motion.div
-          className="bg-gradient-to-r from-accent to-orange-500 text-white text-center py-2.5 text-sm font-bold tracking-wider"
-          animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-          transition={{ duration: 4, repeat: Infinity }}
-        >
-          ⭐ {plan.badge} ⭐
-        </motion.div>
+      {plan.badge && (
+        <span className="absolute -top-3 left-5 bg-accent text-white text-[10px] font-bold px-3 py-0.5 rounded-full tracking-wider uppercase">
+          {plan.badge}
+        </span>
       )}
-
-      <div className="bg-card p-8">
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-6">
-          <motion.div
-            className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${plan.color} flex items-center justify-center shadow-lg`}
-            whileHover={{ rotate: 360 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Icon className="w-7 h-7 text-white" />
-          </motion.div>
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${plan.color} flex items-center justify-center flex-shrink-0 shadow`}>
+            <Icon className="w-5 h-5 text-white" />
+          </div>
           <div>
-            <h3 className="text-xl font-bold">{plan.name}</h3>
-            <p className="text-sm text-muted-foreground">{plan.description}</p>
+            <div className="font-bold text-sm md:text-base">{plan.name}</div>
+            <div className="text-xs text-muted-foreground">{plan.hours}{plan.sub ? ` · ${plan.sub}` : ""}</div>
           </div>
         </div>
-
-        {/* Price */}
-        <div className="mb-8">
-          <div className="flex items-baseline gap-1">
-            <span className="text-sm font-semibold text-muted-foreground">PKR</span>
-            <motion.span
-              className={`text-5xl font-black bg-gradient-to-r ${plan.color} bg-clip-text text-transparent`}
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={inView ? { scale: 1, opacity: 1 } : {}}
-              transition={{ delay: index * 0.15 + 0.3, type: "spring", bounce: 0.4 }}
-            >
-              {plan.price}
-            </motion.span>
-            <span className="text-muted-foreground font-medium">{plan.period}</span>
-          </div>
+        <div className="text-right flex-shrink-0">
+          <span className="text-xs text-muted-foreground">PKR </span>
+          <span className={`text-xl md:text-2xl font-black bg-gradient-to-r ${plan.color} bg-clip-text text-transparent`}>{plan.price}</span>
+          <span className="text-xs text-muted-foreground"> / month</span>
         </div>
+      </div>
+      {/* Shift bar */}
+      <div className="mt-3 relative h-2 rounded-full bg-muted overflow-hidden">
+        <motion.div
+          className={`absolute top-0 h-full rounded-full ${plan.barColor}`}
+          style={{ left: `${plan.barStart}%`, width: 0 }}
+          animate={inView ? { width: `${plan.barWidth}%` } : {}}
+          transition={{ delay: 0.3 + index * 0.1, duration: 0.7, ease: "easeOut" }}
+        />
+      </div>
+    </motion.div>
+  );
+};
 
-        {/* Features */}
-        <ul className="space-y-3 mb-8">
-          {plan.features.map((feature, i) => (
-            <motion.li
-              key={feature}
-              className="flex items-center gap-3"
-              initial={{ opacity: 0, x: -20 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: index * 0.15 + 0.4 + i * 0.06 }}
-            >
-              <motion.div
-                className={`w-5 h-5 rounded-full bg-gradient-to-br ${plan.color} flex items-center justify-center flex-shrink-0`}
-                whileHover={{ scale: 1.3, rotate: 360 }}
-                transition={{ duration: 0.4 }}
-              >
-                <Check className="w-3 h-3 text-white" />
-              </motion.div>
-              <span className="text-sm font-medium">{feature}</span>
-            </motion.li>
-          ))}
-        </ul>
-
-        {/* CTA */}
-        <motion.button
-          onClick={scrollToContact}
-          className={`w-full py-4 rounded-2xl font-bold text-white bg-gradient-to-r ${plan.color} relative overflow-hidden`}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <motion.span
-            className="absolute inset-0 bg-white/20"
-            initial={{ x: "-100%" }}
-            whileHover={{ x: "100%" }}
-            transition={{ duration: 0.5 }}
-          />
-          <span className="relative">Get Started Today</span>
-        </motion.button>
+const MiniCard = ({
+  plan,
+  index,
+  inView,
+  accent = false,
+}: {
+  plan: { name: string; desc: string; price: string; period: string; icon: React.ElementType; color: string; highlight?: boolean };
+  index: number;
+  inView: boolean;
+  accent?: boolean;
+}) => {
+  const Icon = plan.icon;
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
+      whileHover={{ y: -4 }}
+      className={`rounded-2xl p-5 border flex flex-col gap-3 ${
+        plan.highlight
+          ? "bg-primary text-white border-primary shadow-xl shadow-primary/20"
+          : "bg-card border-border"
+      }`}
+    >
+      <div className="flex items-center gap-3">
+        <div className={`w-10 h-10 rounded-xl ${plan.highlight ? "bg-white/20" : `bg-gradient-to-br ${plan.color}`} flex items-center justify-center flex-shrink-0 shadow`}>
+          <Icon className="w-5 h-5 text-white" />
+        </div>
+        <div>
+          <div className={`font-bold text-sm ${plan.highlight ? "text-white" : ""}`}>{plan.name}</div>
+          <div className={`text-xs ${plan.highlight ? "text-white/70" : "text-muted-foreground"}`}>{plan.desc}</div>
+        </div>
+      </div>
+      <div className={`text-right border-t pt-3 ${plan.highlight ? "border-white/20" : "border-border"}`}>
+        <span className={`text-xs ${plan.highlight ? "text-white/70" : "text-muted-foreground"}`}>PKR </span>
+        <span className={`text-2xl font-black ${plan.highlight ? "text-white" : `bg-gradient-to-r ${plan.color} bg-clip-text text-transparent`}`}>{plan.price}</span>
+        {plan.period && <span className={`text-xs ml-1 ${plan.highlight ? "text-white/70" : "text-muted-foreground"}`}>{plan.period}</span>}
       </div>
     </motion.div>
   );
 };
 
 const Pricing = () => {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [ref, inView] = useInView({ threshold: 0.05, triggerOnce: true });
 
   return (
     <section id="pricing" className="py-24 relative overflow-hidden">
-      {/* Background decoration */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="section-container relative z-10">
+      <div ref={ref} className="section-container relative z-10">
+        {/* Header */}
         <motion.div
-          ref={ref}
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
           <motion.div
             className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-5 py-2 text-sm font-semibold mb-5"
@@ -176,32 +221,130 @@ const Pricing = () => {
             transition={{ delay: 0.2, type: "spring" }}
           >
             <Zap className="w-4 h-4" />
-            Simple Pricing
+            Rate Card 2026
           </motion.div>
           <h2 className="text-4xl md:text-5xl font-black mb-4">
-            Affordable Coworking Space{" "}
+            Coworking Space{" "}
             <span className="text-gradient">Prices in Islamabad</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Day pass from PKR 1,500 · Monthly membership from PKR 12,000 — flexible plans for freelancers, startups & remote teams
+            Day pass from PKR 1,500 · Shift memberships from PKR 12,000 — every plan includes WiFi, tea & coffee, printing, AC & fingerprint entry
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {plans.map((plan, i) => (
-            <PricingCard key={plan.name} plan={plan} index={i} />
+        {/* Amenities strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.25, duration: 0.5 }}
+          className="flex flex-wrap justify-center gap-4 mb-12"
+        >
+          {AMENITIES.map(({ icon: Icon, label }) => (
+            <div key={label} className="flex items-center gap-2 bg-card border border-border rounded-full px-4 py-2 text-sm font-medium">
+              <Icon className="w-4 h-4 text-primary" />
+              {label}
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Shift Memberships */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.3 }}
+          className="mb-4"
+        >
+          <div className="flex items-center gap-3 mb-2">
+            <span className="font-black text-lg tracking-wide uppercase">Shift Memberships</span>
+            <div className="flex-1 h-px bg-border" />
+          </div>
+          <p className="text-sm text-muted-foreground mb-5">Every plan includes all amenities above.</p>
+        </motion.div>
+
+        <div className="grid gap-3 mb-12">
+          {SHIFT_PLANS.map((plan, i) => (
+            <ShiftRow key={plan.name} plan={plan} index={i} inView={inView} />
           ))}
         </div>
 
-        {/* Bottom note */}
-        <motion.p
-          className="text-center text-muted-foreground mt-10 text-sm"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.8 }}
+        {/* Flexible Plans + Private side by side */}
+        <div className="grid lg:grid-cols-2 gap-10 mb-12">
+          {/* Flexible Plans */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.5 }}
+              className="flex items-center gap-3 mb-5"
+            >
+              <span className="font-black text-lg tracking-wide uppercase">Flexible Plans</span>
+              <div className="flex-1 h-px bg-border" />
+            </motion.div>
+            <div className="grid gap-4">
+              {FLEXIBLE_PLANS.map((plan, i) => (
+                <MiniCard key={plan.name} plan={plan} index={i} inView={inView} />
+              ))}
+            </div>
+          </div>
+
+          {/* Private & Add-Ons */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.55 }}
+              className="flex items-center gap-3 mb-5"
+            >
+              <span className="font-black text-lg tracking-wide uppercase">Private & Add-Ons</span>
+              <div className="flex-1 h-px bg-border" />
+            </motion.div>
+            <div className="grid gap-4">
+              {PRIVATE_PLANS.map((plan, i) => (
+                <MiniCard key={plan.name} plan={plan} index={i} inView={inView} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Included features + CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.7 }}
+          className="bg-card border border-border rounded-3xl p-8 text-center"
         >
-          🎁 Free 1-day trial pass for new members — experience Islamabad's best coworking space before you commit!
-        </motion.p>
+          <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-5">Everything included in every plan</p>
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8">
+            {[
+              "High-Speed WiFi",
+              "Tea & Coffee",
+              "Printing",
+              "Air Conditioning",
+              "Fingerprint Entry",
+              "Quiet Environment",
+            ].map((f) => (
+              <div key={f} className="flex items-center gap-2 text-sm font-medium">
+                <Check className="w-4 h-4 text-green-500 flex-shrink-0" />
+                {f}
+              </div>
+            ))}
+          </div>
+          <motion.button
+            onClick={scrollToContact}
+            className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-accent hover:bg-accent/90 text-white font-bold text-base shadow-lg relative overflow-hidden"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <motion.span
+              className="absolute inset-0 bg-white/15"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: "100%" }}
+              transition={{ duration: 0.5 }}
+            />
+            <span className="relative">Book Your Space Today →</span>
+          </motion.button>
+          <p className="text-xs text-muted-foreground mt-4">🎁 Free 1-day trial pass for new members — no commitment</p>
+        </motion.div>
       </div>
     </section>
   );
