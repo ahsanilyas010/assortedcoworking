@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/open-coworking-space-islamabad.jpg";
+import { trackCTAClick } from "@/lib/analytics";
 
 const WORDS = ["Productive", "Inspiring", "Connected", "Creative"];
 
@@ -190,7 +191,7 @@ const Hero = () => {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
               <Button
                 className="pulse-ring h-14 px-10 text-base rounded-full bg-accent hover:bg-accent/90 text-white font-bold shadow-lg border-0"
-                onClick={scrollToContact}
+                onClick={() => { trackCTAClick("hero_book_free"); scrollToContact(); }}
               >
                 Book Your Spot Free →
               </Button>

@@ -3,8 +3,9 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail, Send, CheckCircle2 } from "lucide-react";
+import { MapPin, Phone, Mail, Send, CheckCircle2, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
+import { trackPhoneCallClick, trackWhatsAppClick, trackFormSubmit } from "@/lib/analytics";
 
 const contactInfo = [
   {
@@ -94,6 +95,7 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    trackFormSubmit();
     setSubmitted(true);
     toast.success("Message sent! We'll get back to you soon.");
     setTimeout(() => {
@@ -143,7 +145,8 @@ const Contact = () => {
           <div className="lg:col-span-2 space-y-5">
             {contactInfo.map((info, i) => {
               const Icon = info.icon;
-              return (
+              const isPhone = info.title === "Call Us";
+              const card = (
                 <motion.div
                   key={info.title}
                   initial={{ opacity: 0, x: -40 }}
@@ -168,7 +171,43 @@ const Contact = () => {
                   </div>
                 </motion.div>
               );
+              return isPhone ? (
+                <a
+                  key={info.title}
+                  href="tel:+923218526405"
+                  onClick={trackPhoneCallClick}
+                  className="block"
+                >
+                  {card}
+                </a>
+              ) : card;
             })}
+
+            {/* WhatsApp CTA */}
+            <motion.a
+              href="https://wa.me/923218526405?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20Assorted%20Coworking%20Space."
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={trackWhatsAppClick}
+              initial={{ opacity: 0, x: -40 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 0.46, duration: 0.6 }}
+              whileHover={{ x: 6, transition: { duration: 0.2 } }}
+              className="flex items-start gap-4 bg-card rounded-2xl p-5 border border-border group overflow-hidden relative"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-500 opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
+              <motion.div
+                className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center flex-shrink-0 shadow-lg"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.5 }}
+              >
+                <MessageCircle className="w-6 h-6 text-white" />
+              </motion.div>
+              <div>
+                <div className="font-bold mb-1">WhatsApp Us</div>
+                <div className="text-muted-foreground text-sm">Chat with us instantly</div>
+              </div>
+            </motion.a>
 
             {/* Map */}
             <motion.div
