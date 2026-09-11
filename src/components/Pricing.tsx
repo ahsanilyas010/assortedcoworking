@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Check, Sun, Sunset, Moon, Clock, Calendar, CalendarDays, Armchair, Lock, Users, Zap, Wifi, Coffee, Printer, Wind, Fingerprint } from "lucide-react";
+import { Check, Sun, Sunset, Moon, Clock, Calendar, CalendarDays, Armchair, Lock, Users, Zap, Wifi, Coffee, Printer, Wind, Fingerprint, Shield, Leaf } from "lucide-react";
 
 const AMENITIES = [
   { icon: Wifi, label: "High Speed WiFi" },
@@ -104,6 +104,13 @@ const PRIVATE_PLANS = [
     color: "from-primary to-indigo-700",
     highlight: false,
   },
+];
+
+const VALUE_PROPS = [
+  { icon: Shield, title: "Secure & Safe", desc: "Fingerprint entry and 24/7 access", color: "from-primary to-blue-800" },
+  { icon: Leaf, title: "Quiet & Productive", desc: "Focus in a calm, professional setting", color: "from-green-600 to-emerald-500" },
+  { icon: Users, title: "Community", desc: "Connect, collaborate and grow together", color: "from-accent to-orange-500" },
+  { icon: Armchair, title: "Comfort & Convenience", desc: "Ergonomic seating, modern interiors", color: "from-blue-600 to-indigo-600" },
 ];
 
 const scrollToContact = () =>
@@ -304,6 +311,30 @@ const Pricing = () => {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Value Props */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+          {VALUE_PROPS.map((prop, i) => {
+            const Icon = prop.icon;
+            return (
+              <motion.div
+                key={prop.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.65 + i * 0.08 }}
+                className="flex flex-col items-center text-center gap-3 bg-card border border-border rounded-2xl p-5"
+              >
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${prop.color} flex items-center justify-center shadow`}>
+                  <Icon className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <div className="font-bold text-sm">{prop.title}</div>
+                  <div className="text-xs text-muted-foreground mt-1">{prop.desc}</div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Included features + CTA */}
