@@ -21,7 +21,7 @@ const plans = [
   },
   {
     name: "Monthly Membership",
-    price: "20,000",
+    price: "12,000",
     period: "/month",
     description: "Private office with 24/7 access — your dedicated workspace",
     badge: "MOST POPULAR",
@@ -183,7 +183,7 @@ const Pricing = () => {
             <span className="text-gradient">Prices in Islamabad</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Day pass from PKR 1,500 · Monthly membership from PKR 20,000 — flexible plans for freelancers, startups & remote teams
+            Day pass from PKR 1,500 · Monthly membership from PKR 12,000 — flexible plans for freelancers, startups & remote teams
           </p>
         </motion.div>
 
