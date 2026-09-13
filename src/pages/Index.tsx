@@ -6,6 +6,7 @@ import Pricing from "@/components/Pricing";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import About from "@/components/About";
 import Gallery from "@/components/Gallery";
+import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -20,6 +21,7 @@ const Index = () => {
       <Gallery />
       <Pricing />
       <WhyChooseUs />
+      <Testimonials />
       <Contact />
       <Footer />
     </div>
