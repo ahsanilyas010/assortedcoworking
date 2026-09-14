@@ -7,9 +7,9 @@ const NAV = ["Home", "About Us", "Pricing", "Contact"];
 const NAV_IDS = ["home", "about", "pricing", "contact"];
 
 const SOCIAL = [
-  { icon: Facebook, label: "Facebook", href: "#", color: "hover:bg-blue-600" },
-  { icon: Instagram, label: "Instagram", href: "#", color: "hover:bg-pink-600" },
-  { icon: Linkedin, label: "LinkedIn", href: "#", color: "hover:bg-blue-700" },
+  { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/assortedcoworking", color: "hover:bg-blue-600" },
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/assortedcoworking", color: "hover:bg-pink-600" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/assorted-coworking", color: "hover:bg-blue-700" },
 ];
 
 const Footer = () => {
@@ -65,6 +65,8 @@ const Footer = () => {
                     key={s.label}
                     href={s.href}
                     aria-label={s.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white/70 hover:text-white transition-all duration-300 ${s.color}`}
                     whileHover={{ scale: 1.15, y: -3 }}
                     whileTap={{ scale: 0.9 }}
