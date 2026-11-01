@@ -34,6 +34,10 @@ export const BANK_DETAILS = {
 
 export const WHATSAPP_NUMBER = "923218526405";
 
+export const CUSTOM_PLAN_CODE = "custom";
+export const CUSTOM_MIN = 1000;
+export const CUSTOM_MAX = 500000;
+
 export const planByCode = (code: string) => PLANS.find((p) => p.code === code);
 
 export interface Quote {
@@ -45,8 +49,11 @@ export interface Quote {
   total: number;
 }
 
-export function quote(planCode: string, seats: number, meetingRoom: boolean): Quote | null {
-  const plan = planByCode(planCode);
+export function quote(planCode: string, seats: number, meetingRoom: boolean, customAmount?: number): Quote | null {
+  const plan: Plan | undefined =
+    planCode === CUSTOM_PLAN_CODE
+      ? { code: CUSTOM_PLAN_CODE, name: "Custom plan", detail: "Amount agreed with us", price: Math.max(0, Number(customAmount) || 0), period: "month", unit: "seat", deposit: true }
+      : planByCode(planCode);
   if (!plan) return null;
   const qty = Math.max(1, Math.floor(seats || 1));
   const monthly = plan.price * qty;
