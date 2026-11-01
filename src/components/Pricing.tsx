@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Check, Sun, Sunset, Moon, Clock, Calendar, CalendarDays, Armchair, Lock, Users, Zap, Wifi, Coffee, Printer, Wind, Fingerprint, Shield, Leaf } from "lucide-react";
+import { Check, Sun, Moon, Clock, Calendar, CalendarDays, Armchair, Users, Zap, Wifi, Coffee, Printer, Wind, Fingerprint, Shield, Leaf } from "lucide-react";
 
 const AMENITIES = [
   { icon: Wifi, label: "High Speed WiFi" },
@@ -23,21 +23,10 @@ const SHIFT_PLANS = [
     badge: null,
   },
   {
-    name: "Afternoon Shift",
-    hours: "2PM to 10PM",
-    price: "13,500",
-    icon: Sunset,
-    color: "from-accent to-orange-500",
-    barColor: "bg-accent",
-    barStart: 28,
-    barWidth: 44,
-    badge: null,
-  },
-  {
     name: "Night Shift",
     hours: "5PM to 3AM",
     sub: "Built for US hours.",
-    price: "12,000",
+    price: "13,500",
     icon: Moon,
     color: "from-green-600 to-emerald-500",
     barColor: "bg-green-600",
@@ -86,15 +75,6 @@ const FLEXIBLE_PLANS = [
 ];
 
 const PRIVATE_PLANS = [
-  {
-    name: "Private Room",
-    desc: "Lockable team office with 24/7 access",
-    price: "65,000",
-    period: "/ month",
-    icon: Lock,
-    color: "from-primary to-blue-800",
-    highlight: true,
-  },
   {
     name: "Meeting Room Access",
     desc: "Add to any membership",
@@ -235,7 +215,7 @@ const Pricing = () => {
             <span className="text-gradient">Prices in Islamabad</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Day pass from PKR 1,500 · Shift memberships from PKR 12,000 — every plan includes WiFi, tea & coffee, printing, AC & fingerprint entry
+            Day pass from PKR 1,500 · Shift memberships from PKR 13,500 — every plan includes WiFi, tea & coffee, printing, AC & fingerprint entry
           </p>
         </motion.div>
 
@@ -274,7 +254,7 @@ const Pricing = () => {
           ))}
         </div>
 
-        {/* Flexible Plans + Private side by side */}
+        {/* Flexible Plans + Add-Ons side by side */}
         <div className="grid lg:grid-cols-2 gap-10 mb-12">
           {/* Flexible Plans */}
           <div>
@@ -294,7 +274,7 @@ const Pricing = () => {
             </div>
           </div>
 
-          {/* Private & Add-Ons */}
+          {/* Add-Ons */}
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -302,7 +282,7 @@ const Pricing = () => {
               transition={{ delay: 0.55 }}
               className="flex items-center gap-3 mb-5"
             >
-              <span className="font-black text-lg tracking-wide uppercase">Private & Add-Ons</span>
+              <span className="font-black text-lg tracking-wide uppercase">Add-Ons</span>
               <div className="flex-1 h-px bg-border" />
             </motion.div>
             <div className="grid gap-4">
