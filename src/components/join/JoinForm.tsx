@@ -23,7 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { PLANS, formatPKR, quote } from "@/lib/pricing";
+import { CUSTOM_PLAN_CODE, PLANS, formatPKR, quote } from "@/lib/pricing";
 import {
   onboardingSchema,
   submitOnboarding,
@@ -51,6 +51,7 @@ const JoinForm = ({ onSuccess }: Props) => {
       company: "",
       cnic: "",
       plan_code: "day_shift",
+      custom_amount: "",
       seats: 1,
       meeting_room: false,
       start_date: todayIso(),
@@ -65,7 +66,8 @@ const JoinForm = ({ onSuccess }: Props) => {
   const planCode = form.watch("plan_code");
   const seats = form.watch("seats");
   const meetingRoom = form.watch("meeting_room");
-  const q = useMemo(() => quote(planCode, Number(seats), meetingRoom), [planCode, seats, meetingRoom]);
+  const customAmount = form.watch("custom_amount");
+  const q = useMemo(() => quote(planCode, Number(seats), meetingRoom, Number(customAmount)), [planCode, seats, meetingRoom, customAmount]);
 
   const onSubmit = async (values: OnboardingInput) => {
     setSubmitting(true);
@@ -207,12 +209,29 @@ const JoinForm = ({ onSuccess }: Props) => {
                           {p.period === "month" ? "/month" : ""} · {p.detail}
                         </SelectItem>
                       ))}
+                      <SelectItem value={CUSTOM_PLAN_CODE}>Custom amount (agreed with us)</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
                 </FormItem>
               )}
             />
+            {planCode === CUSTOM_PLAN_CODE && (
+              <FormField
+                control={form.control}
+                name="custom_amount"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Monthly amount per seat (PKR) *</FormLabel>
+                    <FormControl>
+                      <Input type="number" inputMode="numeric" placeholder="e.g. 12000" className={inputClass} {...field} />
+                    </FormControl>
+                    <FormDescription>The amount agreed with Assorted Coworking. We check it before activating your seat.</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
             <FormField
               control={form.control}
               name="seats"
