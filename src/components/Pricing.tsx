@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Check, Sun, Moon, Clock, Calendar, CalendarDays, Armchair, Users, Zap, Wifi, Coffee, Printer, Wind, Fingerprint, Shield, Leaf } from "lucide-react";
+import { Check, DoorOpen, Sun, Moon, Clock, Calendar, CalendarDays, Armchair, Users, Zap, Wifi, Coffee, Printer, Wind, Fingerprint, Shield, Leaf } from "lucide-react";
 
 const AMENITIES = [
   { icon: Wifi, label: "High Speed WiFi" },
@@ -14,7 +14,7 @@ const SHIFT_PLANS = [
   {
     name: "Day Shift",
     hours: "9AM to 5PM",
-    price: "15,000",
+    price: "16,500",
     icon: Sun,
     color: "from-blue-600 to-indigo-600",
     barColor: "bg-blue-600",
@@ -26,7 +26,7 @@ const SHIFT_PLANS = [
     name: "Night Shift",
     hours: "5PM to 3AM",
     sub: "Built for US hours.",
-    price: "13,500",
+    price: "15,000",
     icon: Moon,
     color: "from-green-600 to-emerald-500",
     barColor: "bg-green-600",
@@ -75,6 +75,16 @@ const FLEXIBLE_PLANS = [
 ];
 
 const PRIVATE_PLANS = [
+  {
+    name: "Private Room",
+    desc: "Lockable team office with 24/7 access",
+    price: "85,000",
+    period: "/ month",
+    icon: DoorOpen,
+    color: "from-primary to-blue-800",
+    highlight: true,
+    badge: "PREMIUM OPTION",
+  },
   {
     name: "Meeting Room Access",
     desc: "Add to any membership",
@@ -147,7 +157,7 @@ const MiniCard = ({
   inView,
   accent = false,
 }: {
-  plan: { name: string; desc: string; price: string; period: string; icon: React.ElementType; color: string; highlight?: boolean };
+  plan: { name: string; desc: string; price: string; period: string; icon: React.ElementType; color: string; highlight?: boolean; badge?: string };
   index: number;
   inView: boolean;
   accent?: boolean;
@@ -159,12 +169,15 @@ const MiniCard = ({
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
       whileHover={{ y: -4 }}
-      className={`rounded-2xl p-5 border flex flex-col gap-3 ${
+      className={`relative rounded-2xl p-5 border flex flex-col gap-3 ${
         plan.highlight
           ? "bg-primary text-white border-primary shadow-xl shadow-primary/20"
           : "bg-card border-border"
       }`}
     >
+      {plan.badge && (
+        <span className="absolute -top-3 right-4 rounded-full bg-accent px-3 py-0.5 text-[10px] font-black tracking-wider text-white shadow">{plan.badge}</span>
+      )}
       <div className="flex items-center gap-3">
         <div className={`w-10 h-10 rounded-xl ${plan.highlight ? "bg-white/20" : `bg-gradient-to-br ${plan.color}`} flex items-center justify-center flex-shrink-0 shadow`}>
           <Icon className="w-5 h-5 text-white" />
@@ -215,7 +228,7 @@ const Pricing = () => {
             <span className="text-gradient">Prices in Islamabad</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Day pass from PKR 1,500 · Shift memberships from PKR 13,500 — every plan includes WiFi, tea & coffee, printing, AC & fingerprint entry
+            Day pass from PKR 1,500 · Shift memberships from PKR 15,000 — every plan includes WiFi, tea & coffee, printing, AC & fingerprint entry
           </p>
         </motion.div>
 
@@ -282,7 +295,7 @@ const Pricing = () => {
               transition={{ delay: 0.55 }}
               className="flex items-center gap-3 mb-5"
             >
-              <span className="font-black text-lg tracking-wide uppercase">Add-Ons</span>
+              <span className="font-black text-lg tracking-wide uppercase">Private &amp; Add-Ons</span>
               <div className="flex-1 h-px bg-border" />
             </motion.div>
             <div className="grid gap-4">
@@ -355,6 +368,14 @@ const Pricing = () => {
             <span className="relative">Book Your Space Today →</span>
           </motion.button>
           <p className="text-xs text-muted-foreground mt-4">🎁 Free 1-day trial pass for new members — no commitment</p>
+          <a
+            href="/rate-card-2026.jpg"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-3 inline-block text-sm font-semibold text-primary underline underline-offset-4"
+          >
+            View the full Rate Card 2026
+          </a>
         </motion.div>
       </div>
     </section>
